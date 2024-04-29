@@ -36,16 +36,19 @@ Follow the following steps to start the server
    git clone https://github.com/dohmeid/my-note-keeper.git
    ```
 
-3. install the required dependencies
+3. Install the required dependencies
    ```
    npm i express mongoose
    npm i --save-dev dotnet nodemon
    ```
 
-4. start the server
+4. Start the server using:
    ```
    npm run devStart
    ```
- 
+   or using:
+   ```
+   npm start
+   ```
    
 
