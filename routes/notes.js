@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Note = require("../models/noteModel");
 
-// retrieve all notes
+//retrieve all notes
 router.get("/", (req, res) => {
   Note.find()
     .then((response) => {
@@ -16,27 +16,31 @@ router.get("/", (req, res) => {
 });
 
 // add a new note
-router.post("/notes", (req, res) => {
+router.post("/", (req, res) => {
   const note = new Note({
     title: req.body.title,
-    content: req.body.content,
-    creationDate: req.body.creationDate,
+    content: req.body.content
   });
 
   note
     .save()
     .then((response) => {
-      res.status(201).json({ message: "new note added successfully" });
+      res.status(201).json({ response });
     })
     .catch((error) => {
-      res.status(400).json({ message: `An error occured in adding a new note ${error.message}` });
+      res
+        .status(400)
+        .json({
+          message: `An error occured in adding a new note ${error.message}`,
+        });
     });
 });
 
 //delete a specific note using its ID
-router.delete("/notes/:id", (req, res) => {
-  const noteID = req.body.noteID;
-  Note.findByIdAndRemove(noteID)
+router.delete("/:id", (req, res) => {
+  const id = req.params.id;
+
+  Note.findByIdAndDelete(id)
     .then(() => {
       res.json({ message: "note deleted successfully" });
     })
@@ -46,8 +50,8 @@ router.delete("/notes/:id", (req, res) => {
 });
 
 //update a specific note using its ID
-router.put("/notes/:id", (req, res) => {
-  const noteID = req.body.noteID;
+router.put("/:id", (req, res) => {
+  const id = req.params.id;
 
   let updatedNote = {
     title: req.body.title,
@@ -55,14 +59,32 @@ router.put("/notes/:id", (req, res) => {
     creationDate: req.body.creationDate,
   };
 
-  Note.findByIdAndUpdate(noteID, { $set: updatedNote })
+  Note.findByIdAndUpdate(id, updatedNote)
     .then((response) => {
       res.json({ message: "note updated successfully" });
+      res.send(response);
     })
     .catch((error) => {
       res.status(400).json({ message: "an error occured!" });
     });
 });
+
+
+//function to get a node by it id
+async function getNote(req, res, next) {
+  let note
+  try {
+    note = await Subscriber.findById(req.params.id)
+    if (subscriber == null) {
+      return res.status(404).json({ message: 'Cannot find subscriber' })
+    }
+  } catch (err) {
+    return res.status(500).json({ message: err.message })
+  }
+
+  res.subscriber = subscriber
+  next()
+}
 
 module.exports = router;
 

@@ -4,6 +4,8 @@
   "description": "FTS-TASK5 - building a Node.js &amp; MongoDB note keeping application",
   "main": "index.js",
   "scripts": {
+    "devStart": "nodemon index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Doha Hmeid",
@@ -14,5 +16,9 @@
     "mongodb": "^6.5.0",
     "mongoose": "^8.3.2",
     "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.0"
   }
 }

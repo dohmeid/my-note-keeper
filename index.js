@@ -1,20 +1,18 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-const NotesRoute = require("./routes/notes");
+const notesRoute = require("./routes/notes");
 
-const app = express();
-app.use(express.json());
+const app = express(); // Set up the express app
 
 //connect to MongoDB database
 mongoose
-  .connect("mongodb://localhost/notes", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.DATABASE_URL, {useNewUrlParser: true})
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log("Could not connect to MongoDB"));
 
-app.use("/notes", NotesRoute); // Set up the routes middleware
+app.use(express.json()); // Allows us to accept the data in JSON format
+app.use("/notes", notesRoute); // Set up the routes middleware
 
 // Start the server
 app.listen(3000, () => console.log("Server started on port 3000"));
