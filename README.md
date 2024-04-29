@@ -27,34 +27,41 @@ This repository creates a REST API using Node.js, Express.js, and MongoDB for a 
 
 -----
 
-### :file_folder: The Application Structure
+### :file_folder: Application Structure
 1. models/noteModel.js
    
-	This file creates a Mongoose model based on noteSchema that represents the structure of the note document within the MongoDB  collection.  note: (Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js)
+This file defines the Mongoose model for notes. Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js. The `noteModel` creates a model based on the `noteSchema` that represents the structure of the note document within the MongoDB collection.
 
 2. routes/notes.js
    
-    This file contains all the routes related to notes. 
-	Express routers provide a way to group route handlers. They are instances of express.Router().
+This file contains all the routes related to notes. Express routers provide a way to group route handlers. The `notes.js` router handles routes for retrieving, adding, updating, and deleting notes.
 
-3. index.js
+3. controllers/noteController.js
+
+The controller file contains the logic for handling requests and responses related to notes. It interacts with the `noteModel` to perform CRUD operations on notes.
+
+4. index.js
+
+This is the main file of the application and it represents the server itself. It sets up the Express application, connects to the MongoDB database, and defines the routes for the application. The `index.js` file also imports and uses the `noteController` to handle requests related to notes.
    
-    This is the main file of the application and it represents the server itself. 
 -----
 
 
 ### :joystick: Getting Started 
-Follow the following steps to start the server
+To run this application locally, follow these steps:
 1. Clone the repository:
    ```
    git clone https://github.com/dohmeid/my-note-keeper.git
    ```
 
-3. Install the required dependencies
+2. Install the required dependencies
    ```
    npm i express mongoose
    npm i --save-dev dotnet nodemon
    ```
+
+3. Make sure you have MongoDB installed and running locally.
+
 
 4. Start the server using:
    ```
@@ -64,5 +71,6 @@ Follow the following steps to start the server
    ```
    npm start
    ```
-   
+
+5. Visit `http://localhost:3000` in your browser to access the application or use REST Client extension in vscode.
 
