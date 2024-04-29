@@ -47,7 +47,7 @@ router.delete("/:id", (req, res) => {
 });
 
 //update a specific note using its ID
-router.put("/:id", (req, res) => {
+router.patch("/:id", (req, res) => {
   const id = req.params.id;
 
   let updatedNote = {
@@ -60,7 +60,8 @@ router.put("/:id", (req, res) => {
       if (!response) {
         return res.status(404).json({ error: "Note not found" });
       }
-      res.json({ message: "note updated successfully" });
+      // res.json({ message: "note updated successfully" });
+      res.json(response);
     })
     .catch((error) => {
       res.status(400).json({ error: error.message });
