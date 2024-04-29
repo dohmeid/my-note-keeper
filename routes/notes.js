@@ -3,69 +3,78 @@ const router = express.Router();
 const Note = require("../models/noteModel");
 
 //retrieve all notes
-router.get("/", (req, res) => {
-  Note.find()
-    .then((response) => {
-      res.json({ response });
-    })
-    .catch((error) => {
-      res.status(500).json({ error: error.message });
+router.get("/", async (req, res) => {
+  try {
+    const response = await Note.find();
+    res.json({ response });
+  } catch (error) {
+    res.status(500).json({
+      error:
+        "ERROR 500: Internal Server Error, failed to retrieve the notes: " +
+        error.message,
     });
+  }
 });
 
 // add a new note
-router.post("/", (req, res) => {
-  const note = new Note({
-    title: req.body.title,
-    content: req.body.content,
-  });
-
-  note
-    .save()
-    .then((response) => {
-      res.status(201).json({ response });
-    })
-    .catch((error) => {
-      res.status(400).json({ error: error.message });
+router.post("/", async (req, res) => {
+  try {
+    const note = new Note({
+      title: req.body.title,
+      content: req.body.content,
     });
+    const response = await note.save();
+    res.status(201).json({ response });
+  } catch (error) {
+    res.status(400).json({
+      error: "ERROR 400: Bad Request, failed to add the new note: " + error.message,
+    });
+  }
 });
 
 //delete a specific note using its ID
-router.delete("/:id", (req, res) => {
-  const id = req.params.id;
-
-  Note.findByIdAndDelete(id)
-    .then((response) => {
-      if (!response) {
-        return res.status(404).json({ error: "Note not found" });
-      }
-      res.json({ message: "note deleted successfully" });
-    })
-    .catch((error) => {
-      res.status(500).json({ error: error.message });
+router.delete("/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const response = await Note.findByIdAndDelete(id);
+    if (!response) {
+      return res
+        .status(404)
+        .json({ error: "ERROR 400: Not Found: Note not found" });
+    }
+    res.json({ message: "Note deleted successfully" });
+  } catch (error) {
+    res.status(500).json({
+      error:
+        "ERROR 500: Internal Server Error, failed to delete note: " +
+        error.message,
     });
+  }
 });
 
 //update a specific note using its ID
-router.put("/:id", (req, res) => {
-  const id = req.params.id;
-
-  let updatedNote = {
-    title: req.body.title,
-    content: req.body.content,
-  };
-
-  Note.findByIdAndUpdate(id, updatedNote, { new: true })
-    .then((response) => {
-      if (!response) {
-        return res.status(404).json({ error: "Note not found" });
-      }
-      // res.json({ message: "note updated successfully" });
-      res.json(response);
-    })
-    .catch((error) => {
-      res.status(400).json({ error: error.message });
+router.put("/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    let updatedNote = {
+      title: req.body.title,
+      content: req.body.content,
+    };
+    const response = await Note.findByIdAndUpdate(id, updatedNote, {
+      new: true,
     });
+    if (!response) {
+      return res
+        .status(404)
+        .json({ error: "ERROR 404: Not Found, note was not found" });
+    }
+    res.json(response);
+  } catch (error) {
+    res.status(400).json({
+      error:
+        "ERROR 400: Bad Request, failed to update the note: " + error.message,
+    });
+  }
 });
 
 module.exports = router;
