@@ -7,7 +7,7 @@ This repository creates a REST API using Node.js, Express.js, and MongoDB for a 
 
 -----
 ### :dart: Features
-- Each note has: a title, Content, a creation date.
+- Each note has: a title, content, a creation date.
 - The app implements the following endpoints:
     - **`GET /notes`**: Retrieve all notes.
     - **`POST /notes`**: Add a new note.
