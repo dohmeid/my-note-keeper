@@ -2,7 +2,6 @@
 GET http://localhost:3000/notes
 
 
-
 ### Add a new note
 POST http://localhost:3000/notes 
 Content-Type: application/json
@@ -17,9 +16,9 @@ Content-Type: application/json
 DELETE http://localhost:3000/notes/662f59df5cbcd1a6ce550115
 
 
-
 ### Update a specific note using its ID
-PATCH http://localhost:3000/notes/662edeebba4fd6f89e73b690
+PUT http://localhost:3000/notes/662edeebba4fd6f89e73b690
+Content-Type: application/json
 
 {
   "title": "task44", 

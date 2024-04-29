@@ -47,7 +47,7 @@ router.delete("/:id", (req, res) => {
 });
 
 //update a specific note using its ID
-router.patch("/:id", (req, res) => {
+router.put("/:id", (req, res) => {
   const id = req.params.id;
 
   let updatedNote = {
