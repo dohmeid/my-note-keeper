@@ -1,0 +1,26 @@
+### Retrieve all notes
+GET http://localhost:3000/notes
+
+
+### Add a new note
+POST http://localhost:3000/notes 
+Content-Type: application/json
+
+{
+  "title": "task6", 
+  "content": "solve task6"
+}
+
+
+### Delete a specific note using its ID
+DELETE http://localhost:3000/notes/662f73fe7c1de82e65e498ff  
+
+
+### Update a specific note using its ID
+PUT http://localhost:3000/notes/662edeebba4fd6f89e73b690
+Content-Type: application/json
+
+{
+  "title": "task44", 
+  "content": "solve task44"
+}
