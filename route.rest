@@ -13,7 +13,7 @@ Content-Type: application/json
 
 
 ### Delete a specific note using its ID
-DELETE http://localhost:3000/notes/662f6da3332db536438ae677 
+DELETE http://localhost:3000/notes/662f73fe7c1de82e65e498ff  
 
 
 ### Update a specific note using its ID
