@@ -2,9 +2,10 @@
 
 ### FTS-TASK5 - building a Node.js &amp; MongoDB note keeping application
 
-### :stars:	Overview
+### :stars: Overview
 This repository creates a REST API using Node.js, Express.js, and MongoDB for a note-keeping application. The application allows users to perform CRUD operations on notes.
 
+-----
 ### :dart: Features
 - Each note has: a title, Content, a creation date.
 - The app implements the following endpoints:
@@ -14,6 +15,7 @@ This repository creates a REST API using Node.js, Express.js, and MongoDB for a 
     - **`PUT /notes/:id`**: Update a specific note using its ID.
 - The app conects to a MongoDB database and uses Mongoose for object modeling.
 - The app handles the potential errors gracefully. If an error occurs, the API returns a suitable status code and a descriptive error message.
+-----
 
 ### :space_invader: Technologies Used
 <div align="left">
@@ -22,6 +24,8 @@ This repository creates a REST API using Node.js, Express.js, and MongoDB for a 
     <img src="https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" height="30" />
     <img src="https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white" height="30" />
 </div>
+
+-----
 
 ### :file_folder: The Application Structure
 1. models/noteModel.js
@@ -36,6 +40,8 @@ This repository creates a REST API using Node.js, Express.js, and MongoDB for a 
 3. index.js
    
     This is the main file of the application and it represents the server itself. 
+-----
+
 
 ### :joystick: Getting Started 
 Follow the following steps to start the server
