@@ -58,6 +58,7 @@ exports.updateNode = async (req, res) => {
     let updatedNote = {
       title: req.body.title,
       content: req.body.content,
+      creationDate: new Date(req.body.creationDate),
     };
     const response = await Note.findByIdAndUpdate(id, updatedNote, {
       new: true,
